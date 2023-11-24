@@ -2,13 +2,8 @@
 
 namespace PrimaryConstructors.DataAccess
 {
-    public class BookContext : DbContext
+    public class BookContext(DbContextOptions<BookContext> options) : DbContext(options)
     {
-        public BookContext(DbContextOptions<BookContext> options) 
-            : base(options)
-        {
-        }
-
         public DbSet<Book> Books { get; set; }
     }
 }

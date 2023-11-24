@@ -1,16 +1,12 @@
 ﻿namespace PrimaryConstructors.DataAccess
 {
-    public class BookRepository : IBookRepository
+    public class BookRepository(BookContext context) : IBookRepository
     {
-        private readonly BookContext _context;
+        public IQueryable<Book> Books => context.Books;
 
-        public BookRepository(BookContext context)
+        public void SaveChanges()
         {
-            _context = context;
+            context.SaveChanges();
         }
-
-        public IQueryable<Book> Books => _context.Books;
-
-        public void SaveChanges() => _context.SaveChanges();
     }
 }
